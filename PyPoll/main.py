@@ -36,12 +36,11 @@ for candidate in range(len(unique_candidate_list)):
             print(unique_candidate_list[candidate] + ": " + str(vote_percent_list[candidate]) +"% (" + str(vote_count_list[candidate])+ ")")
 print("-" * 50, "\n", "The winner is: ", winner, "\n","-" * 50, sep="")
 
-# Write results to txt file.
+# Create and write results to txt file.
 output_file = os.path.join("analysis", 'py_poll_analysis.txt')
 with open(output_file, "w") as txtFile:
     print("Election Results\n","-" *50, sep="", file = txtFile)
     print('Total Votes: ', str(count), "\n","-" * 50, sep="", file = txtFile)
     for candidate in range(len(unique_candidate_list)):
             print(unique_candidate_list[candidate] + ": " + str(vote_percent_list[candidate]) +"% (" + str(vote_count_list[candidate])+ ")", file = txtFile)
-
     print("-" * 50, "\n", "The winner is: ", winner, "\n","-" * 50, sep="",  file = txtFile)
