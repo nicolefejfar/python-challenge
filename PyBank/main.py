@@ -11,11 +11,10 @@ sum_value_change = 0
 greatest_increase = 0
 greatest_decrease = 0
 
-# Open file, update header, calculate data.
+# Open file, skip header, calculate data.
 with open(py_bank_csv, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ",")
     csv_header = next(csvfile)
-    print("\nFinancial Analysis\n","-" *50, sep="")
     for row in csvreader:
         current_value = int(row[1])
         net_value += current_value
@@ -35,19 +34,20 @@ with open(py_bank_csv, 'r') as csvfile:
         total_months += 1
 avg_value_change = sum_value_change / (total_months - 1)
 
-# Print summary to terminal.
-print(f'Total Months: {total_months}')
-print(f'Total: ${net_value}')
-print(f'Average Change: ${round(avg_value_change, 2)}')
-print(f'Greatest Increase in Profits: {greatest_increase_month} (${greatest_increase})')
-print(f'Greatest Decrease in Profits: {greatest_decrease_month} (${greatest_decrease})')
-
-# Create & print summary to text file.
+# Open txt file to write print statements
 output_file = os.path.join('analysis', 'py_bank_analysis.txt')
 with open(output_file, "w") as txtFile:
-    print("Financial Analysis\n","-" *50, sep="", file = txtFile)
+
+    # Print header & summary to terminal and txt file.
+    print("\nFinancial Analysis\n","-" *50, sep="")
+    print("\nFinancial Analysis\n","-" *50, sep="", file = txtFile)
+    print(f'Total Months: {total_months}')
     print(f'Total Months: {total_months}', file = txtFile)
+    print(f'Total: ${net_value}')
     print(f'Total: ${net_value}', file = txtFile)
+    print(f'Average Change: ${round(avg_value_change, 2)}')
     print(f'Average Change: ${round(avg_value_change, 2)}', file = txtFile)
+    print(f'Greatest Increase in Profits: {greatest_increase_month} (${greatest_increase})')
     print(f'Greatest Increase in Profits: {greatest_increase_month} (${greatest_increase})', file = txtFile)
+    print(f'Greatest Decrease in Profits: {greatest_decrease_month} (${greatest_decrease})')
     print(f'Greatest Decrease in Profits: {greatest_decrease_month} (${greatest_decrease})', file = txtFile)
